@@ -10,3 +10,5 @@ steps:
 # Deploy to google cloud app egnine
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['app', 'deploy']
+  env:
+    - 'PROJECT_ID=pics-251401'
