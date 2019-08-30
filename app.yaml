@@ -3,3 +3,6 @@ env: standard
 
 automatic_scaling:
   max_num_instances: 1
+
+env_variables:
+  PROJECT_ID: "pics-251401"
