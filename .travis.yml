@@ -17,7 +17,7 @@ after_success:
   - docker push mirks/pics
 
 before_deploy:
-  - ./create_env_file.sh
+  - echo REACT_APP_CLIENT_ID="$REACT_APP_CLIENT_ID" >> .env
 
 deploy:
   provider: gae
