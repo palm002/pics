@@ -12,15 +12,14 @@ script:
 - docker run -e CI=true mirks/pics npm run test
 
 after_success:
-  - docker build -t mirks/pics .
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push mirks/pics
-
-# before_deploy:
-  # - echo REACT_APP_CLIENT_ID="$REACT_APP_CLIENT_ID" >> .env
+- docker build -t mirks/pics .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+- docker push mirks/pics
 
 deploy:
   provider: gae
-  # skip_cleanup: true
   keyfile: service-account.json
   project: pics-251401
+
+env:
+  secure: LcCxlTTJa1qvIdLrLxcIh0bOb1gCIW8HR52W0Ppj/pATy/lCOQNCZMf/A5BRQR+LLLWsa8QMlMaxsS9jmq/2MsJWkDzaiiStX040JXCbSCdKztS5lLs7Cc0bvP7NOaXQoQlOSU+XqLYFkcMwnrdFtW/XAPGKrjKSKtx1U+RMNsx7OIj03zgr/fJ1aiEQilScHjgZ6BRWwWlo4aXBZ0fNouHYKoXTq8R6OGQJNve37SkyYuU1ti2/NoUSz507ZRp02gjEHlCDAMCBfPEERiDumgoZUqHD0RY5wpUgLv0soA4jqjSW3e1pPoPWop6+P8F/q1S+bCLZs6ucnZqx3j5Swn7eCuVcfIrwzgYx2cUQ1VYcsD5vUJDsH2uTF5puFK/OouD4OjpZucoZmSce7slgeb7vc6TEHqFFiYN2EscJDH6ff+SdABDwxx4AB5jBTulBxpW/NZKGvqwRhLt1OCLRewxZbu4VVqy7v0Sr6sKZTE8uvuAB6IuGdAWcnXEsT7Hhasj8wMQixVDK2LwAO+4YgwaPpOazCqu5NyxdoEQeleLbZVDZ9EnDj8DTLn2FcwLK3Pp1slJk8SbSfIayGU00EA4xYKl0sI2Sih+mrFgRPe/ud9mQvl0Vb9GH5HpGVKiyMMxRqWhFNmwt5p2F648udvo4bAoA2lfRCEMOyTw8CAg=
