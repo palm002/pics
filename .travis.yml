@@ -21,5 +21,6 @@ before_deploy:
 
 deploy:
   provider: gae
+  skip_cleanup: true
   keyfile: service-account.json
   project: pics-251401
