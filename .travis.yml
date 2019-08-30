@@ -1,0 +1,25 @@
+sudo: required
+language: generic
+services:
+- docker
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_5f57f0f97b8e_key -iv $encrypted_5f57f0f97b8e_iv
+  -in service-account.json.enc -out service-account.json -d
+- docker build -t mirks/pics -f Dockerfile.dev .
+
+script:
+- docker run -e CI=true mirks/pics npm run test
+
+after_success:
+  - docker build -t mirks/pics .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push mirks/pics
+
+before_deploy:
+  - ./create_env_file.sh
+
+deploy:
+  provider: gae
+  keyfile: "service-account.json"
+  project: "pics-251401"
