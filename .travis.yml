@@ -11,6 +11,9 @@ before_install:
 script:
 - docker run -e CI=true mirks/pics npm run test
 
+before_deploy:
+  - echo REACT_APP_CLIENT_ID="$REACT_APP_CLIENT_ID" >> .env
+
 after_success:
 - docker build -t mirks/pics .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -18,6 +21,7 @@ after_success:
 
 deploy:
   provider: gae
+  skip_cleanup: true
   keyfile: service-account.json
   project: pics-251401
 
