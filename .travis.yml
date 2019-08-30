@@ -16,11 +16,11 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push mirks/pics
 
-before_deploy:
-  - echo REACT_APP_CLIENT_ID="$REACT_APP_CLIENT_ID" >> .env
+# before_deploy:
+  # - echo REACT_APP_CLIENT_ID="$REACT_APP_CLIENT_ID" >> .env
 
 deploy:
   provider: gae
-  skip_cleanup: true
+  # skip_cleanup: true
   keyfile: service-account.json
   project: pics-251401
