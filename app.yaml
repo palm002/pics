@@ -6,3 +6,4 @@ automatic_scaling:
 
 env_variables:
   PROJECT_ID: "pics-251401"
+  BUCKET_NAME: "pics-251401.appspot.com"
