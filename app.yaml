@@ -1,8 +1,5 @@
 runtime: nodejs10
 env: standard
 
-automatic_scaling:
-  max_num_instances: 1
-
 env_variables:
   BUCKET_NAME: "pics-251401.appspot.com"
